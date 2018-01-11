@@ -4,9 +4,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
-import android.view.View
-import android.view.ViewConfiguration
 import kotlinx.android.synthetic.main.activity_single_card.*
+
 
 class SingleCardActivity : AppCompatActivity() {
 
