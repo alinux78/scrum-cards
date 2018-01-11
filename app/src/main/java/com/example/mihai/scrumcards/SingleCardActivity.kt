@@ -41,7 +41,9 @@ class SingleCardActivity : AppCompatActivity() {
                             currentIdx--
                         }
                         currentIdx = currentIdx  % ScrumCardsAdapter.CARDS.size
-                        this@SingleCardActivity.setValue(ScrumCardsAdapter.CARDS[currentIdx])
+                        val value = ScrumCardsAdapter.CARDS[currentIdx]
+                        intent.putExtra(VALUE, value)
+                        showValue()
                         return true
                     }
                 }
@@ -59,14 +61,10 @@ class SingleCardActivity : AppCompatActivity() {
 
     fun showValue() {
         var value = intent.getStringExtra(VALUE);
-        setValue(value)
-    }
-
-    private fun setValue(value: String) {
         if (value.length > 2) {
             textView.textScaleX = 0.8F
         }
-        textView.text = value;
+        textView.text = value
     }
 
 }
