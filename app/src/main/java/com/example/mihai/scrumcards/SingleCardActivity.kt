@@ -24,6 +24,26 @@ class SingleCardActivity : AppCompatActivity() {
                         this@SingleCardActivity.finish()
                         return true
                     }
+
+                    override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
+                        if (e1 == null || e2 == null) {
+                            return false
+                        }
+
+                        if (Math.abs(e1.rawY - e2.rawY) < 10) {
+                            return false
+                        }
+                        val textView = this@SingleCardActivity.textView
+                        var currentIdx = ScrumCardsAdapter.CARDS.indexOf(textView.text)
+                        if (e1.rawX - e2.rawX > 10) {
+                            currentIdx++
+                        } else if (e2.rawX - e1.rawX > 10) {
+                            currentIdx--
+                        }
+                        currentIdx = currentIdx  % ScrumCardsAdapter.CARDS.size
+                        this@SingleCardActivity.setValue(ScrumCardsAdapter.CARDS[currentIdx])
+                        return true
+                    }
                 }
         )
 
@@ -39,6 +59,10 @@ class SingleCardActivity : AppCompatActivity() {
 
     fun showValue() {
         var value = intent.getStringExtra(VALUE);
+        setValue(value)
+    }
+
+    private fun setValue(value: String) {
         if (value.length > 2) {
             textView.textScaleX = 0.8F
         }
