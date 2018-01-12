@@ -1,6 +1,5 @@
 package com.example.mihai.scrumcards
 
-import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
@@ -19,8 +18,8 @@ class ScrumCardsAdapter(private val context: MainActivity) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var button : Button
         if (convertView == null) {
-            button = Button(context)
-            button.height = 420
+            button = Button(context, null, 0, R.style.CardButtonStyle)
+            button.height = 410
             button.setOnClickListener(context::onCardClick)
         } else {
             button = convertView as Button
